@@ -5,22 +5,23 @@ import {
     Pressable,
     StyleSheet,
 } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
 
 export default function Drink(props) {
     const { layers } = props;
     return (
         <View style={styles.drink}>
             {/* {
-              currentLayers.length > 1 ?
+              layers.length > 1 ?
                 <LinearGradient
-                  colors={currentLayers.map(layer => layer.colour)}
+                  colors={layers.map(layer => layer.colour)}
                   style={styles.currentLayers}
                 />
                 :
-                currentLayers.length == 1 ?
+                layers.length == 1 ?
 
                   <View style={{
-                    backgroundColor: currentLayers[0].colour,
+                    backgroundColor: layers[0].colour,
                     ...styles.currentLayers,
                   }}>
 
@@ -54,9 +55,9 @@ const styles = StyleSheet.create({
     drink: {
         width: '100%',
         height: '100%',
-        borderWidth: 4,
+        borderWidth: 6,
         borderTopWidth: 0,
-        borderColor: 'skyblue',
+        borderColor: '#634217',
         borderRadius: 10,
         borderTopLeftRadius: 0,
         borderTopRightRadius: 0,
