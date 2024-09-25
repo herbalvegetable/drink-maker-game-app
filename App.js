@@ -116,7 +116,8 @@ export default function App() {
         return output;
     }
     const getRandomDrink = () => {
-        let layerNum = Math.floor(Math.random() * 3) + 1;
+        // let layerNum = Math.floor(Math.random() * 3) + 1;
+        let layerNum = 3;
         let layers = getShuffledItemsFromArray(drinkLayers, layerNum);
         return { layers };
     }
@@ -208,21 +209,39 @@ export default function App() {
                     }
                 </View>
                 <View style={styles.drinkWrapper}>
+                    <Pressable style={{
+                        backgroundColor: 'beige',
+                        marginBottom: 40,
+                        paddingHorizontal: 10,
+                        paddingVertical: 5,
+                        borderRadius: 10,
+                    }}
+                        onPress={() => handleResetCurrentLayers()}>
+                        <Text>Recycle</Text>
+                    </Pressable>
                     <View style={{
                         width: 70,
                         height: 150,
+                        marginBottom: 20,
                     }}>
                         <Drink layers={[...currentLayers]} />
                     </View>
+                    <Pressable style={{
+                        backgroundColor: 'beige',
+                        marginBottom: 40,
+                        paddingHorizontal: 10,
+                        paddingVertical: 5,
+                        borderRadius: 10,
+                    }}
+                        onPress={() => handleSendOrder({
+                            layers: currentLayers,
+                        })}>
+                        <Text>Send Drink</Text>
+                    </Pressable>
                 </View>
             </View>
 
             <View style={styles.bottomContentWrapper}>
-                <Pressable
-                    style={styles.resetBtn}
-                    onPress={() => handleResetCurrentLayers()}>
-                    <Text style={{ color: 'white' }}>RESET DRINK</Text>
-                </Pressable>
                 <View style={styles.selectorWrapper}>
                     {
                         getDrinkLayerGrid(drinkLayers, 3).map((row, rowIndex) => {
@@ -252,13 +271,6 @@ export default function App() {
                         })
                     }
                 </View>
-                <Pressable
-                    style={styles.sendBtn}
-                    onPress={() => handleSendOrder({
-                        layers: currentLayers,
-                    })}>
-                    <Text style={{ color: 'white' }}>SEND DRINK</Text>
-                </Pressable>
             </View>
 
             <StatusBar style="auto" />
@@ -295,11 +307,13 @@ const styles = StyleSheet.create({
         // backgroundColor: 'beige',
     },
     drinkWrapper: {
+        flexDirection: 'row',
         flexGrow: 1,
         width: '100%',
         // backgroundColor: '#eee',
-        alignItems: 'center',
+        alignItems: 'flex-end',
         justifyContent: 'center',
+        gap: 30,
     },
     bottomContentWrapper: {
         width: '100%',
